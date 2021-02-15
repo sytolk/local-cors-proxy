@@ -9,7 +9,7 @@
 	"bin": {
 		"lcp": "./bin/lcp.js"
 	},
-	"author": "Gary Meehan",
+	"author": "Benjamin Jesuiter, forked from Gary Meehan",
 	"license": "MIT",
 	"repository": {
 		"type": "git",
@@ -36,5 +36,9 @@
 	},
 	"devDependencies": {
 		"prettier": "^2.2.1"
-	}
+	},
+	"files": [
+		"bin/*",
+		"lib/*"
+	]
 }
