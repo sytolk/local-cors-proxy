@@ -54,6 +54,11 @@ Alternatively you can install the package locally and add a script to your proje
 | --credentials  | (no value needed)     |   false |
 | --origin       | http://localhost:4200 |      \* |
 
+## Improvements 
+
+- Try the following to be able to test this extension: 
+  https://webbrowsertools.com/test-cors/
+
 ## Changelog
 
 ### 1.1.1-BETA.2
