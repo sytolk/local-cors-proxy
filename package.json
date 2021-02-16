@@ -4,6 +4,7 @@
 	"main": "./lib/index.js",
 	"scripts": {
 		"start": "node ./bin/lcp.js",
+		"publish": "npm publish --access public",
 		"test": "echo \"No tests specified\" && exit 0"
 	},
 	"bin": {
