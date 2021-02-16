@@ -1,36 +1,46 @@
 {
-  "name": "local-cors-proxy",
-  "version": "1.1.0",
-  "main": "./lib/index.js",
-  "scripts": {
-    "start": "node ./bin/lcp.js",
-    "test": "echo \"No tests specified\" && exit 0"
-  },
-  "bin": {
-    "lcp": "./bin/lcp.js"
-  },
-  "author": "Gary Meehan",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/garmeeh/local-cors-proxy.git"
-  },
-  "keywords": [
-    "cors",
-    "proxy",
-    "simple",
-    "node",
-    "express"
-  ],
-  "bugs": {
-    "url": "https://github.com/garmeeh/local-cors-proxy/issues"
-  },
-  "homepage": "https://github.com/garmeeh/local-cors-proxy#readme",
-  "dependencies": {
-    "chalk": "^2.3.2",
-    "command-line-args": "^5.0.2",
-    "cors": "^2.8.4",
-    "express": "^4.16.3",
-    "request": "^2.85.0"
-  }
+	"name": "@bjesuiter/local-cors-proxy",
+	"version": "1.1.1-BETA.1",
+	"main": "./lib/index.js",
+	"scripts": {
+		"start": "node ./bin/lcp.js",
+		"publish": "npm publish --access public",
+		"test": "echo \"No tests specified\" && exit 0"
+	},
+	"bin": {
+		"lcp": "./bin/lcp.js"
+	},
+	"author": "Benjamin Jesuiter, forked from Gary Meehan",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/garmeeh/local-cors-proxy.git"
+	},
+	"keywords": [
+		"cors",
+		"proxy",
+		"simple",
+		"node",
+		"express"
+	],
+	"bugs": {
+		"url": "https://github.com/garmeeh/local-cors-proxy/issues"
+	},
+	"homepage": "https://github.com/garmeeh/local-cors-proxy#readme",
+	"dependencies": {
+		"axios": "^0.21.1",
+		"chalk": "^2.3.2",
+		"command-line-args": "^5.0.2",
+		"cors": "^2.8.4",
+		"express": "^4.16.3",
+		"gaxios": "^4.1.0",
+		"request": "^2.85.0"
+	},
+	"devDependencies": {
+		"prettier": "^2.2.1"
+	},
+	"files": [
+		"bin/*",
+		"lib/*"
+	]
 }
