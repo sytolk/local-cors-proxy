@@ -56,6 +56,11 @@ Alternatively you can install the package locally and add a script to your proje
 
 ## Changelog
 
+### 1.1.1-BETA.2
+
+- replaced 'request' package with 'gaxios'
+- Integrated gaxios request with express request/response pattern
+
 ### 1.1.1-BETA.1
 
 - Forked from Version 1.1.0 from Gary Meehan
