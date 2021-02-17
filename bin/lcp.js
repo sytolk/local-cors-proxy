@@ -5,7 +5,7 @@ import commandLineArgs from 'command-line-args';
 const optionDefinitions = [
 	{ name: 'port', alias: 'p', type: Number, defaultValue: 8010 },
 	{
-		name: 'proxyPartial',
+		name: 'proxyPath',
 		type: String,
 		defaultValue: '/proxy',
 	},
