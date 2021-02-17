@@ -1,9 +1,8 @@
 #!/usr/bin/env node -r esm
+import lcp from '../lib/index';
+import commandLineArgs from 'command-line-args';
 
-var lcp = require('../lib/index.js');
-var commandLineArgs = require('command-line-args');
-
-var optionDefinitions = [
+const optionDefinitions = [
 	{ name: 'port', alias: 'p', type: Number, defaultValue: 8010 },
 	{
 		name: 'proxyPartial',
@@ -11,22 +10,16 @@ var optionDefinitions = [
 		defaultValue: '/proxy',
 	},
 	{ name: 'proxyUrl', type: String },
-	{ name: 'credentials', type: Boolean, defaultValue: false },
+	{ name: 'allowCredentials', type: Boolean, defaultValue: false },
 	{ name: 'origin', type: String, defaultValue: '*' },
 ];
 
 try {
-	var options = commandLineArgs(optionDefinitions);
+	const options = commandLineArgs(optionDefinitions);
 	if (!options.proxyUrl) {
 		throw new Error('--proxyUrl is required');
 	}
-	lcp.startProxy(
-		options.port,
-		options.proxyUrl,
-		options.proxyPartial,
-		options.credentials,
-		options.origin
-	);
+	lcp.startProxy(options);
 } catch (error) {
 	console.error(error);
 }
