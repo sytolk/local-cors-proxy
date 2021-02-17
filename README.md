@@ -5,13 +5,13 @@ Simple proxy to bypass CORS issues. This was built as a local dev only solution 
 This module was built to solve the issue of getting this error:
 
 ```
-No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://localhost:3000' is therefore not allowed access. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disable
+No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://localhost:4200' is therefore not allowed access. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disable
 ```
 
 ## Getting Started
 
 ```
-npm install -g local-cors-proxy
+npm install -g @bjesuiter/local-cors-proxy
 ```
 
 **Simple Example**
@@ -25,7 +25,7 @@ https://www.yourdomain.ie/movies/list
 Start Proxy:
 
 ```
-lcp --proxyUrl https://www.yourdomain.ie
+lcp --targetUrl https://www.yourdomain.ie
 ```
 
 Then in your client code, new API endpoint:
@@ -40,26 +40,90 @@ Alternatively you can install the package locally and add a script to your proje
 
 ```json
  "scripts": {
-   "proxy": "lcp --proxyUrl https://www.yourdomain.ie"
+   "proxy": "lcp --targetUrl https://www.yourdomain.ie"
  }
 ```
 
 ## Options
 
-| Option         | Example               | Default |
-| -------------- | --------------------- | ------: |
-| --proxyUrl     | https://www.google.ie |         |
-| --proxyPartial | foo                   |   proxy |
-| --port         | 8010                  |    8010 |
-| --credentials  | (no value needed)     |   false |
-| --origin       | http://localhost:4200 |      \* |
+| Option        | Example               | Default |
+| ------------- | --------------------- | ------: |
+| --targetUrl   | https://www.google.ie |         |
+| --proxyPath   | /foo                  |  /proxy |
+| --port        | 8010                  |    8010 |
+| --credentials | (no value needed)     |   false |
+| --config      | ./services.json       |         |
 
-## Improvements 
+- Your origin (for examle http://localhost:4200) is not needed to be set
+  because it will be taken from the request to this proxy server automatically
 
-- Try the following to be able to test this extension: 
-  https://webbrowsertools.com/test-cors/
+### --targetUrl
+
+The real base url of the api you want to connect to
+
+### --proxyPath
+
+The path on your proxy which redirects to your target url.
+For example:
+
+```
+http://localhost:4200/proxy redirects to  https://www.yourdomain.ie (without the /proxy)
+```
+
+### --port
+
+The port on which this local cors proxy should listen
+
+### --credentials
+
+If your http/https request from your client app has the option 'sendWithCredentials' activated,
+it will send any authentication cookies with the request.
+If this option is activated, you need to pass 'true' to this --credentials option,
+otherwise your CORS-enabled Response will be wrong.
+
+Note: I remember this out of my head, please search for your own if in doubt.
+
+You may see the following error message, which indicates that you need to enable this --credentials option:
+
+```
+TODO: insert Browser error message here
+```
+
+### --config
+
+This config flag allows to pass in a path for a json file (typically named services.json), which contains the following structure:
+
+```json
+{
+	"/api1": {
+		"target": "https://my-first-api.yourdomain.ie",
+		"pathRewrite": { "^/api1": "" }
+	},
+	"/second-api": {
+		"target": "https://some-other-api.yourdomain.ie",
+		"pathRewrite": { "^/second-api": "" }
+	}
+}
+```
+
+- The Key in this Map is like the --proxyPath cli option
+- The 'target' property is like the --targetUrl cli option
+- The 'pathRewrite' property will remove your proxyPath part from the resulting request to your real api
+
+This allows you to pipe multiple different APIs through this proxy and distinguish them by the proxyPath.
+
+You can use the cli options together with the --config option, they will be merged.
+However, it's recommended to insert all proxyPath mappings into the config, once created, to have all proxyPaths registered in one place.
+
+## Improvements
+
+- Find api to test this with
 
 ## Changelog
+
+### Next
+
+- switch completely to http-proxy-middleware to avoid manually requesting the target api, which improves stability
 
 ### 1.1.1-BETA.2
 
