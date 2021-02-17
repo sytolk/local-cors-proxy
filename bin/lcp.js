@@ -9,15 +9,16 @@ const optionDefinitions = [
 		type: String,
 		defaultValue: '/proxy',
 	},
-	{ name: 'proxyUrl', type: String },
-	{ name: 'allowCredentials', type: Boolean, defaultValue: false },
-	{ name: 'origin', type: String, defaultValue: '*' },
+	{ name: 'targetUrl', type: String },
+	// the file which will be loaded for multi-target configuration
+	{ name: 'config', alias: 'c', type: String },
+	{ name: 'credentials', type: Boolean, defaultValue: false },
 ];
 
 try {
 	const options = commandLineArgs(optionDefinitions);
-	if (!options.proxyUrl) {
-		throw new Error('--proxyUrl is required');
+	if (!options.targetUrl) {
+		throw new Error('--targetUrl is required');
 	}
 	lcp.startProxy(options);
 } catch (error) {
