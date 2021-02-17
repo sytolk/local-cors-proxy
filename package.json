@@ -28,13 +28,10 @@
 	},
 	"homepage": "https://github.com/bjesuiter/local-cors-proxy#readme",
 	"dependencies": {
-		"axios": "^0.21.1",
 		"chalk": "^2.3.2",
 		"command-line-args": "^5.0.2",
 		"cors": "^2.8.4",
-		"express": "^4.16.3",
-		"gaxios": "^4.1.0",
-		"request": "^2.85.0"
+		"express": "^4.16.3"
 	},
 	"devDependencies": {
 		"prettier": "^2.2.1"
