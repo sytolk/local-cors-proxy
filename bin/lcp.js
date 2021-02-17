@@ -17,8 +17,15 @@ const optionDefinitions = [
 
 try {
 	const options = commandLineArgs(optionDefinitions);
-	if (!options.targetUrl) {
-		throw new Error('--targetUrl is required');
+	const hasConfigFile =
+		options.config && typeof options.config === 'string' && options.config.length > 0;
+
+	if (hasConfigFile) {
+		options.multiProxyConfigs = jsonfile.readFileSync(options.config);
+	}
+
+	if (!options.targetUrl && !hasConfigFile) {
+		throw new Error('--targetUrl or --config is required');
 	}
 	lcp.startProxy(options);
 } catch (error) {
